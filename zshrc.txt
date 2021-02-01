@@ -1,0 +1,68 @@
+export ZSH="/root/.oh-my-zsh"
+
+ZSH_THEME="robbyrussell"
+
+HIST_STAMPS="yyyy-mm-dd"
+DISABLE_UPDATE_PROMPT="true"
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+
+alias hfs='hdfs dfs'
+alias hc='hdfs dfs -cat'
+alias hl='hdfs dfs -ls -h'
+alias hg='hdfs dfs -getmerge'
+alias hm='hdfs dfs -mv'
+
+
+alias gcl='git clone'
+alias gst='git status'
+alias gpu='git pull'
+alias gco='git checkout'
+
+alias mj="make -j"
+alias ff='tail -f -n 50'
+alias rl='rm *.log'
+alias ml='mv *.log logs'
+alias v='vim '
+alias ll='ls -al -tr'
+alias lll='ll -h'
+alias l='ls -aHl'
+alias psg='ps -ef | grep'
+
+alias sort='LC_ALL=c sort -S 30% '
+alias uniq='LC_ALL=c uniq '
+alias py='python3 '
+
+alias ss='sort -k6,7'
+alias hi='history | grep '
+
+
+alias zc='vi ~/.zshrc'
+alias zs='source ~/.zshrc'
+
+dur(){find $1 -name '*.wav' -exec soxi -D {} \; | paste -sd+ -| bc}
+
+tf(){tar -zcvf $1.tar.gz $1}
+alias te='tar -zxvf '
+
+
+pa(){cat $1 | parallel -j $2 {} }
+
+kc(){python3 ~/bin/pp.py kc $@}
+nc(){python3 ~/bin/pp.py nc $@}
+
+sp(){
+  fl=$1
+  to=$2
+  cnt=$(wc -l < $fl)
+  each=$[$cnt/$to+1]
+  split -l $each $fl $3
+}
+
+plugins=(git z extract sudo)
+
+source $ZSH/oh-my-zsh.sh
+
+cd
